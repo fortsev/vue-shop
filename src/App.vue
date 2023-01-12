@@ -1,38 +1,26 @@
 <template>
   <HeaderBlock />
-  <HomePage
-      :product="product"
-      :category="category"
-  />
+  <router-view></router-view>
   <FooterBlock />
 </template>
 
 <script>
 import HeaderBlock from "@/components/HeaderBlock";
-import HomePage from "@/components/HomePage";
 import FooterBlock from "@/components/FooterBlock";
 
 export default {
   name: 'App',
   components: {
     HeaderBlock,
-    HomePage,
     FooterBlock
   },
   data() {
     return {
-      product: Array,
-      category: Array,
+
     }
   },
   mounted() {
-    //Добавить обработку ошибок
-    fetch('https://fakestoreapi.com/products')
-        .then(res=>res.json())
-        .then(json=>this.product = json)
-    fetch('https://fakestoreapi.com/products/categories')
-        .then(res=>res.json())
-        .then(json=>this.category = json)
+
   },
   methods: {
 
@@ -44,6 +32,8 @@ export default {
 body {
   margin: 0;
   padding: 0;
+  min-height: 100%;
+  height: 100vh;
 }
 
 #app {
@@ -54,6 +44,11 @@ body {
   color: #2c3e50;
   padding-top: 40px;
   background-color: #F9F9F9;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: max-content;
+  box-sizing: border-box;
 }
 
 a {
