@@ -2,7 +2,10 @@
   <div>
     <h2>Главная страница</h2>
     <div class="container" v-if="product.length > 3">
-      <ProductList :products="product"/>
+      <ProductList
+          :products="product"
+          @add="add"
+      />
       <h3><router-link to="catalog">Смотреть все...</router-link></h3>
     </div>
     <PreLoader v-else/>
@@ -29,7 +32,13 @@ export default {
     fetch('https://fakestoreapi.com/products?limit=4')
         .then(res=>res.json())
         .then(json=>this.product = json)
+        .catch(err=>console.log(err.message))
   },
+  methods: {
+    add(data) {
+      this.$emit('add', data);
+    }
+  }
 }
 </script>
 

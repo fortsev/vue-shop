@@ -7,7 +7,10 @@
           :activeCategory="activeCategory"
           @choosingCategory="(name) => activeCategory = name"
       />
-      <ProductList :products="sortProduct"/>
+      <ProductList
+          :products="sortProduct"
+          @add="add"
+      />
     </div>
     <PreLoader v-else/>
   </div>
@@ -36,13 +39,19 @@ export default {
 
   },
   mounted() {
-    //Добавить обработку ошибок
     fetch('https://fakestoreapi.com/products')
         .then(res=>res.json())
         .then(json=>this.product = json)
+        .catch(err=>console.log(err.message))
     fetch('https://fakestoreapi.com/products/categories')
         .then(res=>res.json())
         .then(json=>this.category = json)
+        .catch(err=>console.log(err.message))
+  },
+  methods: {
+    add(data) {
+      this.$emit('add', data);
+    }
   },
   computed: {
     sortProduct() {

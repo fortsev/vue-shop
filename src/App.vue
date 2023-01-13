@@ -1,6 +1,11 @@
 <template>
-  <HeaderBlock />
-  <router-view></router-view>
+  <HeaderBlock
+      :cart="cart"
+      @changeCount="changeCount"
+  />
+  <router-view
+      @add="add"
+  ></router-view>
   <FooterBlock />
 </template>
 
@@ -16,14 +21,34 @@ export default {
   },
   data() {
     return {
-
+      cart: [],
     }
   },
   mounted() {
 
   },
   methods: {
+    add(product) {
+      let indexProduct = this.cart.findIndex((item) => item.id === product.id);
+      if (indexProduct === -1) {
+        this.cart.push({...product, count: 1})
+      } else {
+        ++this.cart[indexProduct].count
+      }
 
+    },
+    changeCount(data){
+      let product = this.cart.find((item) => item.id === data.id)
+      let productIndex = this.cart.findIndex((item) => item.id === data.id)
+      if (data.count === -1) {
+        --product.count
+        if (product.count === 0) {
+          this.cart.splice(productIndex, 1);
+        }
+      } else {
+        ++product.count
+      }
+    }
   }
 }
 </script>
@@ -42,7 +67,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  padding-top: 40px;
+  padding: 40px 15px 0 15px;
   background-color: #F9F9F9;
   display: flex;
   flex-direction: column;

@@ -45,13 +45,14 @@ h3 {
 
 ul {
   display: flex;
+  flex-wrap: wrap;
   margin: 0;
   padding: 0;
   margin-bottom: 15px;
 }
 
 li {
-  margin: 0 5px;
+  margin: 5px;
   padding: 10px;
   background: #fff;
   list-style-type: none;

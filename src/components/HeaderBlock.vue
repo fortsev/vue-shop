@@ -15,7 +15,10 @@
         </router-link></li>
       </ul>
     </nav>
-    <CartBlock />
+    <CartBlock
+        :cart="cart"
+        @changeCount="changeCount"
+    />
   </header>
 </template>
 
@@ -27,6 +30,14 @@ export default {
   components: {
     CartBlock,
   },
+  props: {
+    cart: Array,
+  },
+  methods: {
+    changeCount(data) {
+      this.$emit('changeCount', data)
+    }
+  }
 }
 </script>
 

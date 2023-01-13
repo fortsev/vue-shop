@@ -13,7 +13,7 @@
         </div>
         <h3>Описание</h3>
         <p>{{ product.description }}</p>
-        <span class="btn">Купить</span>
+        <span class="btn" @click="addCart(product)">Купить</span>
       </div>
     </div>
     <PreLoader v-else/>
@@ -33,10 +33,16 @@ export default {
       product: Object,
     }
   },
+  methods: {
+    addCart(product) {
+      this.$emit('add', product);
+    }
+  },
   mounted() {
     fetch('https://fakestoreapi.com/products/' + this.$route.params.id)
         .then(res=>res.json())
         .then(json=>this.product = json)
+        .catch(err=>console.log(err.message))
   }
 }
 </script>

@@ -13,7 +13,7 @@
       <div class="price">
         {{ item.price }} $
       </div>
-      <span class="btn">Купить</span>
+      <span class="btn" @click="addCart(item)">Купить</span>
     </div>
     </transition-group>
   </div>
@@ -27,6 +27,11 @@ export default {
   },
   mounted() {
 
+  },
+  methods: {
+    addCart(product) {
+      this.$emit('add', product);
+    }
   }
 }
 </script>
@@ -56,7 +61,7 @@ export default {
 .list {
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   background-color: #fff;
   border: 1px solid #2c3e501f;
   border-radius: 10px;
