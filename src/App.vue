@@ -25,7 +25,9 @@ export default {
     }
   },
   mounted() {
-
+    if (localStorage.cart) {
+      this.cart = JSON.parse(localStorage.cart);
+    }
   },
   methods: {
     add(product) {
@@ -35,7 +37,7 @@ export default {
       } else {
         ++this.cart[indexProduct].count
       }
-
+      this.setLocal()
     },
     changeCount(data){
       let product = this.cart.find((item) => item.id === data.id)
@@ -48,7 +50,14 @@ export default {
       } else {
         ++product.count
       }
+      this.setLocal()
+    },
+    setLocal() {
+      localStorage.setItem('cart', JSON.stringify(this.cart));
     }
+  },
+  watch: {
+
   }
 }
 </script>
