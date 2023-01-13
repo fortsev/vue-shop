@@ -2,7 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 import HomePage from "@/components/HomePage";
 import CatalogPage from "@/components/CatalogPage";
 import ProductPage from "@/components/ProductPage";
-// import NotFound from "@/components/NotFound";
+import NotFound from "@/components/NotFound";
 
 export default createRouter({
     history: createWebHistory(),
@@ -22,11 +22,11 @@ export default createRouter({
             name: 'product',
             component: ProductPage
         },
-        // {
-        //     path: '*',
-        //     name: 'notfound',
-        //     component: NotFound
-        // },
+        {
+            path: '/:catchAll(.*)',
+            name: 'notfound',
+            component: NotFound,
+        },
 
     ]
 })

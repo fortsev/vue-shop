@@ -1,9 +1,10 @@
 <template>
   <header>
-    <div class="logo">
+    <router-link :to="{ name: 'home' }"><div class="logo">
       <img src="../assets/logo.png" alt="logo">
       <span>VueShop</span>
     </div>
+    </router-link>
     <nav>
       <ul>
         <li><router-link :to="{ name: 'home' }">

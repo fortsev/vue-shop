@@ -3,8 +3,8 @@
     <router-link :to="{ name: 'catalog' }"
     class="back-link">В каталог</router-link>
     <h2>{{ product.title }}</h2>
-    <div class="container">
-      <div class="card" v-if="product.id !== undefined">
+    <div class="container" v-if="product.id !== undefined">
+      <div class="card">
         <img class="image" :src="product.image" alt="product.title">
         <div class="param">
           <p>Категория: {{ product.category }}</p>
@@ -16,12 +16,18 @@
         <span class="btn">Купить</span>
       </div>
     </div>
+    <PreLoader v-else/>
   </div>
 </template>
 
 <script>
+import PreLoader from "@/components/PreLoader";
+
 export default {
   name: "ProductPage",
+  components: {
+    PreLoader
+  },
   data() {
     return {
       product: Object,

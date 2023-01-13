@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
     <h2>Каталог товаров</h2>
-    <div class="container" v-if="product.length !== 0">
+    <div class="container" v-if="product.length > 1">
       <CategoryMenu
           :category="category"
           :activeCategory="activeCategory"
@@ -9,18 +9,21 @@
       />
       <ProductList :products="sortProduct"/>
     </div>
+    <PreLoader v-else/>
   </div>
 </template>
 
 <script>
 import CategoryMenu from "@/components/CategoryMenu";
 import ProductList from "@/components/ProductList";
+import PreLoader from "@/components/PreLoader";
 
 export default {
   name: "HomePage",
   components: {
     CategoryMenu,
-    ProductList
+    ProductList,
+    PreLoader
   },
   data() {
     return {

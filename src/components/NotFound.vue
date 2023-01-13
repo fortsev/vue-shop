@@ -1,6 +1,7 @@
 <template>
   <div>
-    1231
+    <h2>Упс! Тут ничего нет...</h2>
+    <router-link :to="{name: 'home'}">На главную</router-link>
   </div>
 </template>
 
