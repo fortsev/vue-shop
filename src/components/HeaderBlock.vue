@@ -34,6 +34,7 @@ export default {
     cart: Array,
   },
   methods: {
+    //Изменение количества товара
     changeCount(data) {
       this.$emit('changeCount', data)
     }

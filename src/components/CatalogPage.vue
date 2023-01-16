@@ -39,21 +39,25 @@ export default {
 
   },
   mounted() {
+    //Запрос на получение всех товаров
     fetch('https://fakestoreapi.com/products')
         .then(res=>res.json())
         .then(json=>this.product = json)
         .catch(err=>console.log(err.message))
+    //Запрос на получение всех категорий
     fetch('https://fakestoreapi.com/products/categories')
         .then(res=>res.json())
         .then(json=>this.category = json)
         .catch(err=>console.log(err.message))
   },
   methods: {
+    //Добавление товара в корзину
     add(data) {
       this.$emit('add', data);
     }
   },
   computed: {
+    //Сортировка продуктов по выбранной категории
     sortProduct() {
       if (this.activeCategory !== '') {
         return this.product.filter((item) => item.category === this.activeCategory);

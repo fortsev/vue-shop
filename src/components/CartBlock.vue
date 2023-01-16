@@ -60,6 +60,7 @@ export default {
     }
   },
   computed: {
+    //Подсчет общего количества товаров в корзине
     allCount() {
       if (this.cart.length > 0) {
         return this.cart.reduce(function (acc, item) {
@@ -68,6 +69,7 @@ export default {
       }
       return 0;
     },
+    //Подсчет общеей стоимости товаров в корзине
     allPrice(){
       if (this.cart.length > 0) {
         return this.cart.reduce(function (acc, item) {

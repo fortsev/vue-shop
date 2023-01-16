@@ -28,13 +28,14 @@ export default {
     }
   },
   mounted() {
-    //Добавить обработку ошибок
+    //Получаем первые 4 продукта для вывода на главной странице
     fetch('https://fakestoreapi.com/products?limit=4')
         .then(res=>res.json())
         .then(json=>this.product = json)
         .catch(err=>console.log(err.message))
   },
   methods: {
+    //Добавление товара в корзину
     add(data) {
       this.$emit('add', data);
     }

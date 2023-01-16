@@ -34,11 +34,13 @@ export default {
     }
   },
   methods: {
+    //Добавление товара в корзину
     addCart(product) {
       this.$emit('add', product);
     }
   },
   mounted() {
+    //Получаем информацию о конкретном товаре
     fetch('https://fakestoreapi.com/products/' + this.$route.params.id)
         .then(res=>res.json())
         .then(json=>this.product = json)
