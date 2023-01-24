@@ -1,5 +1,7 @@
 # vue-shop
 
+## [DEMO](https://fakeshop.milky-web.ru/)
+
 ## Project setup
 ```
 npm install
