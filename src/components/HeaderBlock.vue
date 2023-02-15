@@ -16,7 +16,6 @@
       </ul>
     </nav>
     <CartBlock
-        :cart="cart"
         @changeCount="changeCount"
     />
   </header>
@@ -29,9 +28,6 @@ export default {
   name: "HeaderBlock",
   components: {
     CartBlock,
-  },
-  props: {
-    cart: Array,
   },
   methods: {
     //Изменение количества товара

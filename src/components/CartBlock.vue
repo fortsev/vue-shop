@@ -11,8 +11,8 @@
 
     <div class="cart-content">
       <h3>Ваша корзина</h3>
-      <div class="list" v-if="cart.length !== 0">
-        <div class="item" v-for="(item) in cart" :key="item.id" >
+      <div class="list" v-if="$store.state.cart.length !== 0">
+        <div class="item" v-for="(item) in $store.state.cart" :key="item.id" >
           <div class="picture">
             <img :src="item.image" :alt="item.title">
           </div>
@@ -32,7 +32,7 @@
       <div v-else>
         Корзина пуста
       </div>
-      <div class="info" v-if="this.cart.length > 0">
+      <div class="info" v-if="$store.state.cart.length > 0">
         <span><b>Общая цена:</b> {{ allPrice }}$</span>
       </div>
     </div>
@@ -47,23 +47,20 @@ export default {
       cartShow: false,
     }
   },
-  props: {
-    cart: Array,
-  },
   methods: {
     changeCount(id, count) {
       if (count === -1) {
-        this.$emit('changeCount', { id: id, count: -1})
+        this.$store.commit('changeCountProduct', { id: id, count: -1});
       } else {
-        this.$emit('changeCount', { id: id, count: 1})
+        this.$store.commit('changeCountProduct', { id: id, count: 1});
       }
     }
   },
   computed: {
     //Подсчет общего количества товаров в корзине
     allCount() {
-      if (this.cart.length > 0) {
-        return this.cart.reduce(function (acc, item) {
+      if (this.$store.state.cart.length > 0) {
+        return this.$store.state.cart.reduce(function (acc, item) {
           return acc + item.count;
         }, 0);
       }
@@ -71,8 +68,8 @@ export default {
     },
     //Подсчет общеей стоимости товаров в корзине
     allPrice(){
-      if (this.cart.length > 0) {
-        return this.cart.reduce(function (acc, item) {
+      if (this.$store.state.cart.length > 0) {
+        return this.$store.state.cart.reduce(function (acc, item) {
           return Math.ceil((acc + item.price * item.count) * 100) / 100;
         }, 0);
       }

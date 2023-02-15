@@ -35,9 +35,6 @@ export default {
       category: Array,
     }
   },
-  props: {
-
-  },
   mounted() {
     //Запрос на получение всех товаров
     fetch('https://fakestoreapi.com/products')

@@ -36,7 +36,7 @@ export default {
   methods: {
     //Добавление товара в корзину
     addCart(product) {
-      this.$emit('add', product);
+      this.$store.commit('addToCart', product);
     }
   },
   mounted() {

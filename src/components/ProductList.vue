@@ -25,13 +25,10 @@ export default {
   props: {
     products: Array,
   },
-  mounted() {
-
-  },
   methods: {
     //Добавление товара в корзину
     addCart(product) {
-      this.$emit('add', product);
+      this.$store.commit('addToCart', product);
     }
   }
 }

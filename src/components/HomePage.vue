@@ -4,7 +4,6 @@
     <div class="container" v-if="product.length > 3">
       <ProductList
           :products="product"
-          @add="add"
       />
       <h3><router-link to="catalog">Смотреть все...</router-link></h3>
     </div>
@@ -35,10 +34,6 @@ export default {
         .catch(err=>console.log(err.message))
   },
   methods: {
-    //Добавление товара в корзину
-    add(data) {
-      this.$emit('add', data);
-    }
   }
 }
 </script>
