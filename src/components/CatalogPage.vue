@@ -49,8 +49,8 @@ export default {
   },
   methods: {
     //Добавление товара в корзину
-    add(data) {
-      this.$emit('add', data);
+    addCart(product) {
+      this.$store.commit('addToCart', product);
     }
   },
   computed: {

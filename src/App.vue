@@ -26,8 +26,6 @@ export default {
     }
   },
   methods: {
-
-
     //Запись корзины в локал
     setLocal() {
       localStorage.setItem('cart', JSON.stringify(this.$store.state.cart));

@@ -32,9 +32,33 @@ const store = createStore({
             //Перезаписываем корзину в локал
             this.setLocal()
         },
+
+    },
+    actions: {
+        //Записываем корзину в localStorage
         setLocal(state) {
             localStorage.setItem('cart', JSON.stringify(state.cart));
         }
+    },
+    getters: {
+        //Подсчет общего количества товаров в корзине
+        numberProductInBasket: state => {
+            if (state.cart.length > 0) {
+                return state.cart.reduce(function (acc, item) {
+                    return acc + item.count;
+                }, 0);
+            }
+            return 0;
+        },
+        //Подсчет общей стоимости товаров в корзине
+        priceProductInBasket: state => {
+            if (state.cart.length > 0) {
+                return state.cart.reduce(function (acc, item) {
+                    return Math.ceil((acc + item.price * item.count) * 100) / 100;
+                }, 0);
+            }
+            return 0;
+        },
     }
 })
 

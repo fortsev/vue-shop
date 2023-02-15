@@ -5,7 +5,7 @@
         <path d="M12.3629 9.35C13.0002 9.35 13.561 9.0015 13.8499 8.4745L16.8917 2.958C17.2061 2.397 16.7983 1.7 16.1525 1.7H3.57717L2.77847 0H0V1.7H1.69937L4.75823 8.1515L3.61116 10.2255C2.99089 11.3645 3.80659 12.75 5.09811 12.75H15.2943V11.05H5.09811L6.03276 9.35H12.3629ZM4.38437 3.4H14.708L12.3629 7.65H6.39812L4.38437 3.4ZM5.09811 13.6C4.16345 13.6 3.40723 14.365 3.40723 15.3C3.40723 16.235 4.16345 17 5.09811 17C6.03276 17 6.79748 16.235 6.79748 15.3C6.79748 14.365 6.03276 13.6 5.09811 13.6ZM13.595 13.6C12.6603 13.6 11.9041 14.365 11.9041 15.3C11.9041 16.235 12.6603 17 13.595 17C14.5296 17 15.2943 16.235 15.2943 15.3C15.2943 14.365 14.5296 13.6 13.595 13.6Z"/>
       </svg>
       <span class="cart-quantity">
-        {{ allCount }}
+        {{ $store.getters.numberProductInBasket }}
     </span>
     </div>
 
@@ -24,7 +24,7 @@
             <div class="quantity">
               <div class="btn-q" @click="changeCount(item.id, -1)">-</div>
               <span>{{ item.count }}</span>
-              <div class="btn-q" @click="changeCount(item.id, )">+</div>
+              <div class="btn-q" @click="changeCount(item.id)">+</div>
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
         Корзина пуста
       </div>
       <div class="info" v-if="$store.state.cart.length > 0">
-        <span><b>Общая цена:</b> {{ allPrice }}$</span>
+        <span><b>Общая цена:</b> {{ $store.getters.priceProductInBasket }}$</span>
       </div>
     </div>
   </div>
@@ -56,26 +56,6 @@ export default {
       }
     }
   },
-  computed: {
-    //Подсчет общего количества товаров в корзине
-    allCount() {
-      if (this.$store.state.cart.length > 0) {
-        return this.$store.state.cart.reduce(function (acc, item) {
-          return acc + item.count;
-        }, 0);
-      }
-      return 0;
-    },
-    //Подсчет общеей стоимости товаров в корзине
-    allPrice(){
-      if (this.$store.state.cart.length > 0) {
-        return this.$store.state.cart.reduce(function (acc, item) {
-          return Math.ceil((acc + item.price * item.count) * 100) / 100;
-        }, 0);
-      }
-      return 0;
-    }
-  }
 }
 </script>
 
